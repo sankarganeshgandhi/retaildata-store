@@ -1,6 +1,6 @@
 package com.sgglabs.retail;
 
-import com.sgglabs.retail.model.ProductSearchResult;
+import com.sgglabs.retail.model.doc.ProductSearchResult;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,14 +1,11 @@
 package com.sgglabs.retail;
 
-import com.sgglabs.retail.model.CustomSequence;
+import com.sgglabs.retail.model.doc.CustomSequence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Service;
 
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
