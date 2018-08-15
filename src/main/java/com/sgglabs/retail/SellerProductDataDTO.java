@@ -1,36 +1,13 @@
-package com.sgglabs.retail.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.sgglabs.retail;
 
 import java.util.Date;
 import java.util.Objects;
 
-/*
- * CREATE TABLE SellerProductData (
- *   Id BIGINT(20) NOT NULL AUTO_INCREMENT,
- *   ProdSearchResultId BIGINT(20) NOT NULL,
- *   SellerName VARCHAR(30),
- *   RatingIndex VARCHAR(30),
- *   TotalRatings VARCHAR(20),
- *   Details VARCHAR(50),
- *   BasePrice VARCHAR(50),
- *   TotalPrice VARCHAR(20),
- *   StatusId INT(2) NOT NULL DEFAULT 2,
- *   CreatedDate DATE,
- *   ModifiedDate DATE,
- *   PRIMARY KEY (Id),
- *   FOREIGN KEY (ProdSearchResultId) REFERENCES ProductSearchResult(Id)
- *   FOREIGN KEY (StatusId) REFERENCES Status(Id)
- *  );
- */
-@Document(collection = "sellerproductdata")
-public class SellerProductData {
+public class SellerProductDataDTO {
     private static final String TO_STRING_FORMAT =
             "SellerProductData[id=%s, sellerName='%s', ratingIndex='%s', totalRatings='%s', " +
                     "details='%s', basePrice='%s', totalPrice='%s', status='%s', createdDate=%s, modifiedDate=%s]";
-    @Id
-    private long id;
+    private int id;
 
     private String sellerName;
 
@@ -50,14 +27,14 @@ public class SellerProductData {
 
     private Date modifiedDate;
 
-    public SellerProductData() {
+    public SellerProductDataDTO() {
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -137,7 +114,7 @@ public class SellerProductData {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SellerProductData that = (SellerProductData) o;
+        SellerProductDataDTO that = (SellerProductDataDTO) o;
         return id == that.id &&
                 Objects.equals(status, that.status) &&
                 Objects.equals(sellerName, that.sellerName) &&

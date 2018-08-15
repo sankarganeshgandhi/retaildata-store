@@ -16,13 +16,11 @@ import org.springframework.jms.support.converter.MessageType;
 import org.springframework.stereotype.Service;
 
 import javax.jms.ConnectionFactory;
-import java.util.HashMap;
-import java.util.Map;
 
 @EnableJms
 @Service
-@ComponentScan(basePackages = "com.sgglabs.retail")
-@EnableMongoRepositories(basePackages = "com.sgglabs.retail")
+/*@ComponentScan(basePackages = "com.sgglabs.retail")
+@EnableMongoRepositories(basePackages = "com.sgglabs.retail")*/
 public class SearchResultJMSService {
     private static final Logger LOG = LoggerFactory.getLogger(SearchResultJMSService.class);
 
@@ -40,9 +38,6 @@ public class SearchResultJMSService {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.TEXT);
         converter.setTypeIdPropertyName("_class");
-        /*Map<String, Class<?>> typeIdMappings = new HashMap<>();
-        typeIdMappings.put(ProductSearchResult.class.getName(), ProductSearchResult.class);
-        converter.setTypeIdMappings(typeIdMappings);*/
         return converter;
     }
 }

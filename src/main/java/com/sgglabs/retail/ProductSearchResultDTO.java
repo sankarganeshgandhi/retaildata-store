@@ -1,37 +1,14 @@
-package com.sgglabs.retail.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.sgglabs.retail;
 
 import java.util.Date;
 import java.util.Objects;
 
-/*
- * CREATE TABLE ProductSearchResult(
- *   Id BIGINT(20) NOT NULL AUTO_INCREMENT,
- *   SiteName VARCHAR(30) NOT NULL,
- *   SearchText VARCHAR(100) NOT NULL,
- *   ShortDesc VARCHAR(150),
- *   LongDesc VARCHAR(300),
- *   Price VARCHAR(30),
- *   Unit VARCHAR(30),
- *   Reviews VARCHAR(250),
- *   Ratings VARCHAR(50),
- *   OtherOptions VARCHAR(100),
- *   ProdCategories VARCHAR(200),
- *   StatusId INT(2) NOT NULL DEFAULT 2,
- *   CreatedDate DATE,
- *   ModifiedDate DATE
- * );
- */
-@Document(collection = "productsearchresult")
-public class ProductSearchResult {
+public class ProductSearchResultDTO {
     private static final String TO_STRING_FORMAT =
             "ProductSearchResult[id=%s, siteName='%s', searchText='%s', shortDesc='%s', longDesc='%s', price='%s'" +
                     "unit='%s', reviews='%s', ratings='%s', otherOptions='%s', prodCategories='%s'" +
-                    "statusId=%s, createdDate=%s, modifiedDate=%s, sellerDataId=%s]";
+                    "statusId=%s, createdDate=%s, modifiedDate=%s, sellerData=%s]";
 
-    @Id
     private long id;
 
     private String siteName;
@@ -60,9 +37,9 @@ public class ProductSearchResult {
 
     private Date modifiedDate;
 
-    private long sellerDataId;
+    private SellerProductDataDTO sellerData;
 
-    public ProductSearchResult() {
+    public ProductSearchResultDTO() {
     }
 
     public long getId() {
@@ -177,21 +154,21 @@ public class ProductSearchResult {
         this.modifiedDate = modifiedDate;
     }
 
-    public long getSellerDataId() {
-        return sellerDataId;
+    public SellerProductDataDTO getSellerData() {
+        return sellerData;
     }
 
-    public void setSellerDataId(long sellerDataId) {
-        this.sellerDataId = sellerDataId;
+    public void setSellerData(SellerProductDataDTO sellerData) {
+        this.sellerData = sellerData;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductSearchResult that = (ProductSearchResult) o;
+        ProductSearchResultDTO that = (ProductSearchResultDTO) o;
         return id == that.id &&
-                sellerDataId == that.sellerDataId &&
+                Objects.equals(sellerData, that.sellerData) &&
                 Objects.equals(siteName, that.siteName) &&
                 Objects.equals(searchText, that.searchText) &&
                 Objects.equals(shortDescription, that.shortDescription) &&
@@ -210,13 +187,13 @@ public class ProductSearchResult {
     @Override
     public int hashCode() {
         return Objects.hash(id, siteName, searchText, shortDescription, longDescription, price, unit, numberOfReviews,
-                totalRatings, otherOptions, categories, status, createdDate, modifiedDate, sellerDataId);
+                totalRatings, otherOptions, categories, status, createdDate, modifiedDate, sellerData);
     }
 
     @Override
     public String toString() {
         return String.format(TO_STRING_FORMAT, id, siteName, searchText, shortDescription, longDescription, price, unit,
                 numberOfReviews, totalRatings, otherOptions, categories, status, createdDate, modifiedDate,
-                sellerDataId);
+                sellerData);
     }
 }
