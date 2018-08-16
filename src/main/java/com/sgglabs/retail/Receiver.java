@@ -30,6 +30,7 @@ public class Receiver {
 
     @JmsListener(destination = "SearchResultQ", containerFactory = "jmsFactory")
     public void receiveMessage(ProductSearchResultDTO searchResultDTO) {
+        LOG.debug("Message received: " + searchResultDTO.toString());
         List<SellerProductDataDTO> sellerDataDTOList = searchResultDTO.getSellerDataList();
         List<SellerProductData> sellerDataEntityList = saveSellerData(sellerDataDTOList);
 
